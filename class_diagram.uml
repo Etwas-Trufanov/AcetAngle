@@ -1,0 +1,99 @@
+classDiagram
+    class AcetAuth {
+        -token: str
+        -name: str
+        -surname: str
+        -isDoctor: bool
+        -isAdmin: bool
+        +_make_session() aiohttp.ClientSession
+        +register(username: str, password: str, name: str, surname: str, is_doctor: bool) None
+        +auth_by_password(username: str, password: str) None
+        +update_chats() dict
+        +send_message(message_text: str, chat_id: str, call_type: int, context: str, filename: Optional[str], image: Optional[str]) dict
+        +_apply_profile(data: dict) None
+        +is_authenticated: bool
+    }
+
+    class AcetAngleApp {
+        +__init__()
+        +_start_async_loop()
+        +_shutdown_async_loop()
+        +_run_async()
+        +_done_callback()
+        +_show_login_screen()
+        +_do_login()
+        +_show_register_screen()
+        +_do_register()
+        +_show_main_screen()
+        +_show_empty_results()
+        +_load_image()
+        +_display_image()
+        +_on_canvas_resize()
+        +_analyze()
+        +_on_analysis_ok()
+        +_on_analysis_err()
+        +_display_results()
+        +_result_row()
+        +_show_text_result()
+        +_pt()
+        +_add()
+        +_draw_overlays()
+        +_draw_landmark()
+        +_draw_line()
+        +_draw_angle()
+        +_draw_coxae()
+        +_add_label_bg()
+        +_toggle_overlay()
+        +_clear_window()
+        +_logout()
+    }
+
+    class RequestHandler {
+        +do_POST()
+        +log_message(format, *args)
+    }
+
+    class json_schema {
+        +name: str
+        +strict: bool
+        +schema: dict
+    }
+
+    class render_schema {
+        +name: str
+        +strict: bool
+        +schema: dict
+    }
+
+    class AuthRequest {
+        +username: str
+        +password: str
+    }
+
+    class RegisterRequest {
+        +username: str
+        +password: str
+        +name: str
+        +surname: str
+        +isDoctor: bool
+    }
+
+    class SendMessageRequest {
+        +message_text: str
+        +chat_id: str
+        +call_type: int
+        +filename: Optional[str]
+        +image: Optional[str]
+    }
+
+    class FastAPI {
+        +app: FastAPI
+    }
+
+    AcetAuth --> aiohttp.ClientSession
+    AcetAngleApp --> AcetAuth
+    RequestHandler --> json_schema
+    RequestHandler --> render_schema
+    FastAPI --> AuthRequest
+    FastAPI --> RegisterRequest
+    FastAPI --> SendMessageRequest
