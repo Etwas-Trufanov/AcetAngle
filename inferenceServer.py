@@ -95,7 +95,7 @@ def call_lmstudio(messages, schema=None):
     payload = {
         "model": MODEL_NAME,
         "messages": messages,
-        "max_tokens": 1024,
+        "max_tokens": 2048,
         "temperature": 0.7,
         "reasoning_effort": "low",
     }
